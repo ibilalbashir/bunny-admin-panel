@@ -1,3 +1,4 @@
+import { NewsLetterService } from './../../shared/services/newsLetter.service';
 import { Component, OnInit } from '@angular/core';
 
 declare var grapesjs: any;
@@ -8,10 +9,11 @@ declare var grapesjs: any;
   styleUrls: ['./newsletter-container.component.scss']
 })
 export class NewsletterContainerComponent implements OnInit {
-  constructor() {}
+  e: any = '';
+  constructor(private newsLetterService: NewsLetterService) {}
 
   ngOnInit() {
-    const e = grapesjs.init({
+    this.e = grapesjs.init({
       container: '#gjs',
       plugins: ['gjs-preset-newsletter'],
       pluginsOpts: {
@@ -23,6 +25,22 @@ export class NewsletterContainerComponent implements OnInit {
     });
   }
   saveFn(value) {
-    console.log('value is ', value);
+    const html = this.e.getHtml();
+    const css = this.e.getCss();
+    const obj = {
+      html: html,
+      css: css
+    };
+
+    this.newsLetterService.saveTemplate(obj).subscribe(
+      res => {
+        console.log('res ', res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    console.log('html = ', html);
+    console.log('css = ', css);
   }
 }

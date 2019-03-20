@@ -1,3 +1,4 @@
+import { NewsLetterService } from './shared/services/newsLetter.service';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './shared/services/auth.service';
 import { NgModule } from '@angular/core';
@@ -37,7 +38,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatStepperModule,
+  MatStepperModule
 } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
@@ -45,14 +46,13 @@ import { AppComponent } from './app.component';
 
 import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
-import { NavbarModule} from './shared/navbar/navbar.module';
-import { FixedpluginModule} from './shared/fixedplugin/fixedplugin.module';
+import { NavbarModule } from './shared/navbar/navbar.module';
+import { FixedpluginModule } from './shared/fixedplugin/fixedplugin.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 
 import { AppRoutes } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
-
 
 @NgModule({
   exports: [
@@ -93,26 +93,22 @@ import { HttpClientModule } from '@angular/common/http';
 export class MaterialModule {}
 
 @NgModule({
-    imports:      [
-        CommonModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        RouterModule.forRoot(AppRoutes),
-        HttpModule,
-        MaterialModule,
-        MatNativeDateModule,
-        SidebarModule,
-        NavbarModule,
-        FooterModule,
-        FixedpluginModule,
-        HttpClientModule
-    ],
-    declarations: [
-        AppComponent,
-        AdminLayoutComponent,
-        AuthLayoutComponent
-    ],
-    providers: [AuthService, AuthGuard],
-    bootstrap:    [ AppComponent ]
+  imports: [
+    CommonModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    RouterModule.forRoot(AppRoutes),
+    HttpModule,
+    MaterialModule,
+    MatNativeDateModule,
+    SidebarModule,
+    NavbarModule,
+    FooterModule,
+    FixedpluginModule,
+    HttpClientModule
+  ],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
+  providers: [AuthService, AuthGuard, NewsLetterService],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
