@@ -1,0 +1,49 @@
+<div class="container">
+  
+ 
+    <h1>Create a new merchant</h1>
+
+    <form [formGroup]="createFormGroup">
+
+        <input type="file" (change)="onFileChanged($event)">
+        <input type="text" formControlName="logo" hidden>
+  
+          <mat-form-field>
+            <input matInput placeholder="Enter Merchant Name" formControlName="name">
+          </mat-form-field>
+  
+          <mat-form-field>
+              <input matInput placeholder="Enter Email Address" formControlName="email">
+          </mat-form-field>
+         
+  
+          <mat-form-field>
+              <textarea matInput placeholder="Merchant Details" formControlName="merchantDetails"></textarea>
+          </mat-form-field>
+  
+          <mat-form-field>
+              <input matInput placeholder="Merchant Website" formControlName="website">
+          </mat-form-field>
+  
+          <mat-form-field>
+            <input matInput placeholder="Budget Bunny Commission" formControlName="budgetBunnyCommission">
+          </mat-form-field>
+  
+          <mat-form-field>
+            <input matInput placeholder="Cash Back Amount" formControlName="bunnyUserReturnCommission">
+          </mat-form-field>
+  
+          <mat-form-field>
+              <mat-select placeholder="Merchant Category" formControlName="categoryId">
+                <mat-option *ngFor="let row of (categoryObj$ | async)" [value]="row?.id" >{{row?.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <button [disabled]="createFormGroup.invalid" class="btn btn-success btn-lg btn-block" (click)="createMerchantFn()" mat-raised-button color="primary">Create Merchant</button>
+  
+  
+    </form>
+  
+  
+  
+</div>
